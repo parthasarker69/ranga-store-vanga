@@ -16,7 +16,7 @@ const showProducts = (products) => {
 
    document.getElementById("all-products").innerHTML = "";
 
-   const allProducts = products.slice(0, 10).map((pd) => pd);
+   const allProducts = products.map((pd) => pd);
    for (const product of allProducts) {
       const image = product.image;
       const div = document.createElement('div');
@@ -42,10 +42,11 @@ let count = 0;
 
 const addToCart = (id, price) => {
    count = count + 1;
-   updatePrice(id, value);
+   updatePrice(id, price);
 
    updateTaxAndCharge();
    document.getElementById('total-Products').innerText = count;
+   updateTotal();
 };
 
 const showProductDetails = (product_id) => {
@@ -70,10 +71,11 @@ const getInputValue = (id) => {
 
 // main price update function
 const updatePrice = (id, value) => {
-   const convertedOldPrice = getInputValue(id);
+   // console.log(value);
+   const convertedOldPrice = getInputValue('price');
    const convertPrice = parseInt(value);
    const total = convertedOldPrice + convertPrice;
-   document.getElementById(id).innerText = Math.round(total);
+   document.getElementById('price').innerText = Math.round(total);
 };
 
 // set innerText function
